@@ -3,12 +3,16 @@ buildGrid();
 
 function buildGrid(){
     //create a 16x16 grid of divs in the container
-    const per_side = 10;
+    const per_side = 16;
+    // const minGridSize = 10;
     const total_grid_squares = per_side*per_side;
-    const SIZE_PERCENT = Math.floor(100/per_side) + "%";
-    console.log(SIZE_PERCENT)
-
+    // console.log(SIZE_PERCENT)
+    
     const divContainer = document.querySelector(".container");
+    // divContainer.style.width = (minGridSize * per_side + per_side*2) + "px";
+
+    const SIZE_PERCENT = (divContainer.clientWidth/per_side)-2 + "px";
+    console.log(divContainer.clientWidth/(per_side+2))
 
 
 
@@ -17,16 +21,19 @@ function buildGrid(){
 
         //divNode.style.display = 'flexbox';
         divNode.className = "grid-box"
+        
         divNode.addEventListener("mouseover", () => {
             divNode.style.backgroundColor = "blue";
         });
+
         // divNode.style.display = "flex"
         // divNode.style.flex = "1";
         divNode.style.border = 'solid black 1px';
         divNode.style.width = SIZE_PERCENT;
         divNode.style.height = SIZE_PERCENT;
-        // divNode.style.margin = "1px";
+        divNode.style.margin = "0";
         divContainer.appendChild(divNode);
+        
     }
 
     // for (let i = 0; i < NUM_ROWS; i++){
