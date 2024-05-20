@@ -3,7 +3,7 @@ buildGrid();
 
 function buildGrid(){
     //create a 16x16 grid of divs in the container
-    const per_side = 16;
+    const per_side = 10;
     const total_grid_squares = per_side*per_side;
     const SIZE_PERCENT = Math.floor(100/per_side) + "%";
     console.log(SIZE_PERCENT)
@@ -17,6 +17,9 @@ function buildGrid(){
 
         //divNode.style.display = 'flexbox';
         divNode.className = "grid-box"
+        divNode.addEventListener("mouseover", () => {
+            divNode.style.backgroundColor = "blue";
+        });
         // divNode.style.display = "flex"
         // divNode.style.flex = "1";
         divNode.style.border = 'solid black 1px';
