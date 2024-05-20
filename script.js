@@ -6,10 +6,8 @@ setUpButton();
 function buildGrid(perSide=16){
     //create a 16x16 grid of divs in the container
     const per_side = perSide;
-    // const minGridSize = 10;
-    const total_grid_squares = per_side*per_side;
-    // console.log(SIZE_PERCENT)
-    
+
+    const total_grid_squares = per_side*per_side;    
     const divContainer = document.querySelector(".container");
     // divContainer.style.width = (minGridSize * per_side + per_side*2) + "px";
 
@@ -21,7 +19,7 @@ function buildGrid(perSide=16){
     for (let j = 0; j < total_grid_squares; j++){
         let divNode = document.createElement('div');
 
-        //divNode.style.display = 'flexbox';
+
         divNode.className = "grid-box"
         
         divNode.addEventListener("mouseover", () => {
@@ -37,34 +35,21 @@ function buildGrid(perSide=16){
         divContainer.appendChild(divNode);
         
     }
-
-    // for (let i = 0; i < NUM_ROWS; i++){
-    //     let divRow = document.createElement('div');
-    //     divRow.className = "grid-row";
-    //     divRow.style.display = "flex";
-
-    //     for (let j = 0; j < NUM_ROWS; j++){
-    //     let divNode = document.createElement('div');
-
-    //     //divNode.style.display = 'flexbox';
-    //     divNode.className = "grid-box"
-    //     divNode.style.display = "flex"
-    //     divNode.style.border = 'solid black 1px';
-    //     divNode.style.minWidth = STD_SIZE;
-    //     divNode.style.minHeight = STD_SIZE;
-    //     divRow.appendChild(divNode);
-    //     }
-
-    // divContainer.appendChild(divRow);
-    // }
-    //use flexbox to make the grid
-    //have borders
 }
 
 function setUpButton (){
     const buttonRef = document.querySelector(".reset-button");
+    
     buttonRef.addEventListener('click', () => {
-        let newGridNumber = prompt("Enter a number: ");
+        let newGridNumber = +prompt("Enter a number (1-100): ");
+        
+        //default to 16 if there is non-valid input
+        if (!Number.isInteger(newGridNumber) || newGridNumber > 100 
+            || newGridNumber < 1) {
+                newGridNumber = 16;
+                alert('Invalid input!');
+            }
+
         deleteOldGrid();
         buildGrid(newGridNumber);
     });
