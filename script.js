@@ -1,9 +1,11 @@
 buildGrid();
+setUpButton();
 
 
-function buildGrid(){
+
+function buildGrid(perSide=16){
     //create a 16x16 grid of divs in the container
-    const per_side = 16;
+    const per_side = perSide;
     // const minGridSize = 10;
     const total_grid_squares = per_side*per_side;
     // console.log(SIZE_PERCENT)
@@ -57,4 +59,22 @@ function buildGrid(){
     // }
     //use flexbox to make the grid
     //have borders
+}
+
+function setUpButton (){
+    const buttonRef = document.querySelector(".reset-button");
+    buttonRef.addEventListener('click', () => {
+        let newGridNumber = prompt("Enter a number: ");
+        deleteOldGrid();
+        buildGrid(newGridNumber);
+    });
+}
+
+function deleteOldGrid (){
+    const divContainer = document.querySelector(".container");
+    // alert("DELTING GRID. " + divContainer.hasChildNodes())
+    
+    while(divContainer.hasChildNodes()){
+        divContainer.lastChild.remove();
+    }
 }
